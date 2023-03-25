@@ -40,9 +40,9 @@ class _AddQuestionFormState extends State<AddQuestionForm> {
               child: Container(
                   width: MediaQuery.of(context).size.width - 16,
                   height: 60,
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: Color.fromARGB(255, 73, 198, 185)),
+                  decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      color: Theme.of(context).colorScheme.primaryContainer),
                   child: const Center(
                       child: Text("Form to add question",
                           style:
@@ -107,9 +107,9 @@ class _AddQuestionFormState extends State<AddQuestionForm> {
 
                       },
                   child: Container(
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Color.fromARGB(255, 73, 198, 185)),
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          color: Theme.of(context).colorScheme.primaryContainer),
                       width: 150,
                       height: 50,
                       child: const Center(

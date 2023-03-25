@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:task_03/application/theme_service.dart';
 import 'package:task_03/presentation/widget_examples/widgets/row_images_questions.dart';
 
 import '../../main.dart';
@@ -38,14 +40,13 @@ class _WidgetExampleScreenState extends State<WidgetExampleScreen> {
           // })
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     lRandom = Random().nextInt(3);
-      //      Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionDetail(question: listOfQuestions[lRandom])));
-      //   },
-      //   backgroundColor: Colors.blue,
-      //   child: const Icon(Icons.play_arrow),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Provider.of<ThemeService>(context, listen: false).toggleTheme();
+        },
+        backgroundColor: Theme.of(context).primaryColor,
+        child: const Icon(Icons.play_arrow),
+      ),
     );
   }
 }

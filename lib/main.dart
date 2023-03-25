@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:task_03/application/theme_service.dart';
+import 'package:task_03/presentation/theme_animation/theme_animation_screen.dart';
 import 'package:task_03/presentation/widget_examples/widget_examples_screen.dart';
 import 'package:task_03/presentation/form_add_question/form_add_question_screen.dart';
 import 'package:task_03/root_bottom_navigation.dart';
+import 'package:task_03/theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
-    runApp(MaterialApp(home: MyApp()));
+    runApp(ChangeNotifierProvider(
+      create: (context) => ThemeService(),
+      child: MyApp(),
+    ));
   });
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({super.key});
-final Question mtest = Question(
+  MyApp({super.key});
+  final Question mtest = Question(
       iCat: CategoryQuestion.education,
       iTextQuestion: "What is a school?",
       iHintList: ["hint 1 = lol", "hint 2 = lol2", "hint 3 = lol3"],
       iResponse: "school is ...");
-   List<Question> listOfQuestions = [
+  List<Question> listOfQuestions = [
     Question(
         iCat: CategoryQuestion.education,
         iTextQuestion: "What is a school?",
@@ -39,18 +46,25 @@ final Question mtest = Question(
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: '/rootBottomNav',
-      routes: <String, WidgetBuilder>{
-        '/listQuestion' :(BuildContext context) =>  WidgetExampleScreen(listOfQuestions: listOfQuestions),
-        '/formQuestion' :(BuildContext context) =>  AddQuestionForm(listOfQuestions: listOfQuestions),
-        '/rootBottomNav' :(BuildContext context) =>  RootBottomNavigation(listOfQuestions: listOfQuestions),
-      },
-    );
+    return Consumer<ThemeService>(builder: (context, themeService, child) {
+      return MaterialApp(
+        title: 'Flutter Demo',
+        themeMode: themeService.isDarkModeOn ? ThemeMode.dark : ThemeMode.light,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        initialRoute: '/rootBottomNav',
+        routes: <String, WidgetBuilder>{
+          '/listQuestion': (BuildContext context) =>
+              WidgetExampleScreen(listOfQuestions: listOfQuestions),
+          '/formQuestion': (BuildContext context) =>
+              AddQuestionForm(listOfQuestions: listOfQuestions),
+          '/rootBottomNav': (BuildContext context) =>
+              RootBottomNavigation(listOfQuestions: listOfQuestions),
+          '/themeAnimation': (BuildContext context) =>
+              const ThemeAnimationScreen(),
+        },
+      );
+    });
   }
 }
 
@@ -60,7 +74,11 @@ class Question {
   String _response = "";
   List<String> _hintList = [];
 
-  Question({required CategoryQuestion iCat, required String iTextQuestion, required List<String> iHintList, required String iResponse}) {
+  Question(
+      {required CategoryQuestion iCat,
+      required String iTextQuestion,
+      required List<String> iHintList,
+      required String iResponse}) {
     _category = iCat;
     _textQuestion = iTextQuestion;
     _hintList = iHintList;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_03/presentation/form_add_question/form_add_question_screen.dart';
+import 'package:task_03/presentation/theme_animation/theme_animation_screen.dart';
 import 'package:task_03/presentation/widget_examples/widget_examples_screen.dart';
 
 import 'main.dart';
@@ -23,10 +24,11 @@ class _RootBottomNavigationState extends State<RootBottomNavigation> {
         children: [
           WidgetExampleScreen(listOfQuestions: widget.listOfQuestions),
           AddQuestionForm(listOfQuestions: widget.listOfQuestions),
+          const ThemeAnimationScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromARGB(255, 73, 198, 185),
+        backgroundColor: Theme.of(context).primaryColor,
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.white,
         onTap: (value) {
@@ -40,6 +42,7 @@ class _RootBottomNavigationState extends State<RootBottomNavigation> {
               icon: Icon(Icons.home), label: 'list_question'),
           BottomNavigationBarItem(
               icon: Icon(Icons.add), label: 'form_add_question'),
+          BottomNavigationBarItem(icon: Icon(Icons.animation), label: 'theme_animation'),
         ],
       ),
     );
