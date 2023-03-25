@@ -5,8 +5,8 @@ import 'package:task_03/presentation/widget_examples/widget_examples_screen.dart
 import 'main.dart';
 
 class RootBottomNavigation extends StatefulWidget {
-  RootBottomNavigation({super.key, required this.currentIndex, required this.listOfQuestions});
-  int currentIndex;
+  const RootBottomNavigation({super.key, required this.listOfQuestions});
+  
   final List<Question> listOfQuestions;
   @override
   State<RootBottomNavigation> createState() => _RootBottomNavigationState();
@@ -14,12 +14,12 @@ class RootBottomNavigation extends StatefulWidget {
 
 class _RootBottomNavigationState extends State<RootBottomNavigation> {
     
-  
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(
-        index: widget.currentIndex,
+        index: currentIndex,
         children: [
           WidgetExampleScreen(listOfQuestions: widget.listOfQuestions),
           AddQuestionForm(listOfQuestions: widget.listOfQuestions),
@@ -31,10 +31,10 @@ class _RootBottomNavigationState extends State<RootBottomNavigation> {
         unselectedItemColor: Colors.white,
         onTap: (value) {
           setState(() {
-            widget.currentIndex = value;
+            currentIndex = value;
           });
         },
-        currentIndex: widget.currentIndex,
+        currentIndex: currentIndex,
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.home), label: 'list_question'),

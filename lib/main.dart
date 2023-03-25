@@ -44,11 +44,11 @@ final Question mtest = Question(
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RootBottomNavigation(currentIndex: 0, listOfQuestions: listOfQuestions),
+      initialRoute: '/rootBottomNav',
       routes: <String, WidgetBuilder>{
         '/listQuestion' :(BuildContext context) =>  WidgetExampleScreen(listOfQuestions: listOfQuestions),
         '/formQuestion' :(BuildContext context) =>  AddQuestionForm(listOfQuestions: listOfQuestions),
-        '/rootBottomNav' :(BuildContext context) =>  RootBottomNavigation(currentIndex: 0, listOfQuestions: listOfQuestions),
+        '/rootBottomNav' :(BuildContext context) =>  RootBottomNavigation(listOfQuestions: listOfQuestions),
       },
     );
   }
