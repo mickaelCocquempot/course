@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:task_03/main.dart';
 
 class QuestionDetail extends StatefulWidget {
-  QuestionDetail({super.key, required this.question});
+  const QuestionDetail({super.key, required this.question});
 
   final Question question;
-  double _sizeHintTwo = 14.0;
-  String _textHintTwo = "hint 2 : ";
+  
 
   @override
   State<QuestionDetail> createState() => _QuestionDetailState();
@@ -14,8 +13,12 @@ class QuestionDetail extends StatefulWidget {
 
 class _QuestionDetailState extends State<QuestionDetail> {
   int counterTap = 0;
+  double _sizeHintTwo = 14.0;
+  String _textHintTwo = "hint 2 : ";
+  bool shouldDisplayFirstHint = false;
   @override
   Widget build(BuildContext context) {
+    shouldDisplayFirstHint = counterTap > 0;
     return Scaffold(
         appBar: AppBar(title: const Text("Question Details")),
         body: InkWell(
@@ -23,8 +26,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
             setState(() {
               counterTap++;
               if (counterTap > 1) {
-                widget._sizeHintTwo = 40.0;
-                widget._textHintTwo =
+                _sizeHintTwo = 40.0;
+                _textHintTwo =
                     "hint 2 : ${widget.question.getListHint[1]}";
               }
             });
@@ -35,7 +38,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
             child: Stack(children: <Widget> [
               AnimatedPositioned(
                 duration: const Duration(milliseconds: 200),
-                top: counterTap > 0
+                top: shouldDisplayFirstHint
                     ? 150
                     : MediaQuery.of(context).size.height - 50,
                 child: Column(
@@ -47,8 +50,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     AnimatedDefaultTextStyle(
                         duration: const Duration(milliseconds: 400),
                         style: TextStyle(
-                            fontSize: widget._sizeHintTwo, color: Colors.black),
-                        child: Text(widget._textHintTwo)),
+                            fontSize: _sizeHintTwo, color: Colors.black),
+                        child: Text(_textHintTwo)),
                     counterTap > 2
                         ? TweenAnimationBuilder(
                             duration: const Duration(milliseconds: 800),
