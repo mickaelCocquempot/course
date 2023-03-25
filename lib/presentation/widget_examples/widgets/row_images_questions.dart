@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_03/presentation/widget_examples/widgets/stack_image_category.dart';
 
 import '../../../main.dart';
+import '../../question_detail/question_detail_screen.dart';
 
 class RowImgQuestions extends StatelessWidget {
   const RowImgQuestions(
@@ -12,7 +13,7 @@ class RowImgQuestions extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => {
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionDetail(question: itemQuestion)))
+         Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionDetail(question: itemQuestion)))
       },
       child: Row(
         children: [

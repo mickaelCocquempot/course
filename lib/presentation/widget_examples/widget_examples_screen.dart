@@ -40,13 +40,13 @@ class _WidgetExampleScreenState extends State<WidgetExampleScreen> {
           // })
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Provider.of<ThemeService>(context, listen: false).toggleTheme();
-        },
-        backgroundColor: Theme.of(context).primaryColor,
-        child: const Icon(Icons.play_arrow),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Provider.of<ThemeService>(context, listen: false).toggleTheme();
+      //   },
+      //   backgroundColor: Theme.of(context).primaryColor,
+      //   child: const Icon(Icons.play_arrow),
+      // ),
     );
   }
 }
