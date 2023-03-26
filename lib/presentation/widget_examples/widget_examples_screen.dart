@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:task_03/application/theme_service.dart';
 import 'package:task_03/presentation/widget_examples/widgets/row_images_questions.dart';
 
 import '../../main.dart';

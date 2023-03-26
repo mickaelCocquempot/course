@@ -14,18 +14,16 @@ void main() {
       .then((_) {
     runApp(ChangeNotifierProvider(
       create: (context) => ThemeService(),
-      child: MyApp(),
+      child: const MyApp(),
     ));
   });
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final Question mtest = Question(
-      iCat: CategoryQuestion.education,
-      iTextQuestion: "What is a school?",
-      iHintList: ["hint 1 = lol", "hint 2 = lol2", "hint 3 = lol3"],
-      iResponse: "school is ...");
+  const MyApp({super.key});
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
   List<Question> listOfQuestions = [
     Question(
         iCat: CategoryQuestion.education,
@@ -43,9 +41,6 @@ class MyApp extends StatelessWidget {
         iHintList: ["hint 1 = sport 1", "hint 2 = sport 2"],
         iResponse: "choose whatever")
   ];
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
     return Consumer<ThemeService>(builder: (context, themeService, child) {
       return MaterialApp(
         title: 'Flutter Demo',
